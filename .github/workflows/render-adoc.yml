@@ -1,0 +1,35 @@
+name: build asciidoc
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  asciidoc_build:
+    runs-on: ubuntu-18.04
+    name: Build Asciidoc
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build HTML
+        uses: avattathil/asciidoctor-action@master
+        with:
+          program: "asciidoctor -R . -a source-highlighter=rouge --backend=html5 -D build/html '**/*.adoc'"
+
+      - name: Upload HTML Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: HTML rendition
+          path: build/html
+
+      - name: Build PDF
+        uses: avattathil/asciidoctor-action@master
+        with:
+          program: "asciidoctor-pdf -a rouge-style=solarized-light -a source-highlighter=rouge -a pdf-theme=./documentation-theme.yml -a allow-uri-read -R . -D build/pdf '**/*.adoc'"
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF rendition
+          path: build/pdf

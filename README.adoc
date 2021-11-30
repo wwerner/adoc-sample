@@ -1,2 +1,23 @@
-# adoc-sample
-Sample Repository for asciidoc-based documentation.
+:stylesheet: ../../documentation-theme.css
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+# Asciidoc Sample Repository
+
+Sample Repository for asciidoc-based documentation. Mostly for me personally so I don't forget how to set it up.
+
+Shows how to use includes, figures, theming and build on GH actions in a sane manner.
+
+PlantUML is not yet supported, but will be as soon as I need it somewhere.
+
+## Sample
+
+xref:./doc/ch1.adoc[Sample Chapter 1]
+
+xref:./doc/ch2.adoc[Sample Chapter 2]
+
