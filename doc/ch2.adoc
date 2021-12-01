@@ -1,5 +1,38 @@
+:stylesheet: ../adoc-theme.css
+
 ### Chapter 2
 
 image::img/adoc-logo.png[]
 
+.Example Source Snippet from `wwerner/piep`
+[source, typescript]
+----
+export const useSynth = (
+  digit: number | undefined,
+  time: Tone.Unit.Time,
+  scale: Scale = Scales.chromatic,
+  root: Note
+) => {
+  const rootNoteIdx = Notes.findIndex((n) => n === root);
+  const [synth, setSynth] = useState<Tone.PolySynth | undefined>(undefined);
 
+  const cache = useCache(digit, 3);
+
+  useEffect(() => {
+    const limiter = new Tone.Limiter(-10).toDestination();
+    setSynth(new Tone.PolySynth(Tone.FMSynth).connect(limiter).toDestination());
+  }, []);
+
+  useEffect(() => {
+    if (synth) {
+      synth.triggerAttackRelease( <1>
+        Notes[rootNoteIdx + scale[cache[0] % scale.length]],
+        lengths[cache[1] > 0 ? cache[1] % lengths.length : 0],
+        time,
+        velocities[cache[2] > -1 ? (cache[2] % velocities.length) : 0]
+      );
+    }
+  }, [time]);
+};
+----
+<1> Tone.js is really nice.

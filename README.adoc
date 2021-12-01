@@ -1,4 +1,9 @@
-:stylesheet: ../../documentation-theme.css
+:imagesdir: img/
+:toc:
+:toc-placement!:
+:icons: font
+:stylesheet: adoc-theme.css
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -15,7 +20,17 @@ Shows how to use includes, figures, theming and build on GH actions in a sane ma
 
 PlantUML is not yet supported, but will be as soon as I need it somewhere.
 
-## Sample
+## Sample Document
+
+toc::[]
+
+TIP: It works!
+
+IMPORTANT: Asciidoctor is awesome, don't forget!
+
+CAUTION: Don't forget to add the `...-caption` document attributes in the header of the document on GitHub.
+
+WARNING: You have no reason not to use Asciidoctor.
 
 xref:./doc/ch1.adoc[Sample Chapter 1]
 

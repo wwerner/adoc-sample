@@ -1,3 +1,5 @@
+:stylesheet: ../adoc-theme.css
+
 ### Chapter 1
 
 With some content.
